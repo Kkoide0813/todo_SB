@@ -6,13 +6,33 @@
 </head>
 <body>
 <h1>タスク一覧</h1>
-<!--    <ul>-->
-<!--        <li th:each="item: ${items}" th:text="${items}"></li>-->
-<!--    </ul>-->
-<a th:href="@{/}">TOPへ</a>
-<p th:text="${task.id}"></p>
-<p th:text="${task.summary}"></p>
-<p th:text="${task.description}"></p>
-<p th:text="${task.status}"></p>
+<a th:href="@{/}">トップページへ戻る</a>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th >ID</th>
+            <th>概要</th>
+            <th>ステータス</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${taskList[0].id}"></td>
+            <td th:text="${taskList[0].summary}"></td>
+            <td th:text="${taskList[0].status}"></td>
+        </tr>
+        <tr>
+            <td th:text="${taskList[1].id}"></td>
+            <td th:text="${taskList[1].summary}"></td>
+            <td th:text="${taskList[1].status}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--<p th:text="${taskList[0].description}"></p>-->
+<!--<p th:text="${taskList[1].description}"></p>-->
 </body>
 </html>

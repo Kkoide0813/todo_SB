@@ -15,24 +15,18 @@
             <th >ID</th>
             <th>概要</th>
             <th>ステータス</th>
+            <th>説明</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td th:text="${taskList[0].id}"></td>
-            <td th:text="${taskList[0].summary}"></td>
-            <td th:text="${taskList[0].status}"></td>
-        </tr>
-        <tr>
-            <td th:text="${taskList[1].id}"></td>
-            <td th:text="${taskList[1].summary}"></td>
-            <td th:text="${taskList[1].status}"></td>
+        <tr th:each="task : ${taskList}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.summary}"></td>
+            <td th:text="${task.status}"></td>
+            <td th:text="${task.description}"></td>
         </tr>
         </tbody>
     </table>
 </div>
-
-<!--<p th:text="${taskList[0].description}"></p>-->
-<!--<p th:text="${taskList[1].description}"></p>-->
 </body>
 </html>

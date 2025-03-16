@@ -2,10 +2,10 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tasks</title>
+    <title>TASK LIST</title>
 </head>
 <body>
-<h1>タスク一覧</h1>
+<h1>タスク一覧ページ</h1>
 <a th:href="@{/}">トップページへ戻る</a>
 
 <div>
@@ -19,6 +19,7 @@
         </tr>
         </thead>
         <tbody>
+        <!--/* ループ処理：モデルからtaskList呼び出してtaskに格納、taskをth:objectに格納し、th:textと紐づけて表示 */-->
         <tr th:each="task : ${taskList}" th:object="${task}">
             <td th:text="*{id}"></td>
             <td th:text="*{summary}"></td>

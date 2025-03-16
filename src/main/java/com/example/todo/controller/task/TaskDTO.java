@@ -10,6 +10,4 @@ public record TaskDTO(
 
         String status
 ) {
-    // get/setメソッド
-
 }

@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TaskController {
 
-    // フィールド
+    // TaxkServiceのインスタンス化
     private final TaskService taskService = new TaskService();
 
     @GetMapping("/tasks")
     public String list(Model model) {
+        // 各Listを格納した処理findメソッドをtaskListでラベル化し、モデルに追加
         model.addAttribute("taskList", taskService.find());
         return "tasks/list";
     }

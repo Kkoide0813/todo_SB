@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TaskController {
 
-    // TaskServiceのインスタンス化
-    private final TaskService taskService = new TaskService();
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping("/tasks")
     public String list(Model model) {
@@ -19,7 +22,6 @@ public class TaskController {
                 .map(TaskDTO::toDTO)
                 .toList();
 
-        // 各Listを格納した処理findメソッドをtaskListでラベル化し、モデルに追加
         model.addAttribute("taskList", taskList);
         return "tasks/list";
     }

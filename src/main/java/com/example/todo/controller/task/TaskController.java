@@ -16,7 +16,7 @@ public class TaskController {
         // List<TaskEntity>　-> List<TaskDTO>に変換
         var taskList = taskService.find()
                 .stream()
-                .map(entity -> TaskDTO.toDTO(entity))
+                .map(TaskDTO::toDTO)
                 .toList();
 
         // 各Listを格納した処理findメソッドをtaskListでラベル化し、モデルに追加

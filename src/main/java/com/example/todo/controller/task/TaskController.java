@@ -1,5 +1,6 @@
 package com.example.todo.controller.task;
 
+import com.example.todo.service.task.TaskEntity;
 import com.example.todo.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ public class TaskController {
 
     @GetMapping("/tasks/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
-        model.addAttribute("taskId", taskId);
+        TaskEntity taskEntity = taskService.findById(taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Task not found :id = " + taskId));
+        model.addAttribute("taskId", taskEntity.id());
         return "tasks/detail";
     }
 

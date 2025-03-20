@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,8 +25,9 @@ public class TaskController {
         return "tasks/list";
     }
 
-    @GetMapping("tasks/detail") // 後で、detailの部分をidに応じて変わるように変更予定
-    public String showDetail(){
+    @GetMapping("/tasks/{id}")
+    public String showDetail(@PathVariable("id") long taskId, Model model){
+        model.addAttribute("taskId", taskId);
         return "tasks/detail";
     }
 

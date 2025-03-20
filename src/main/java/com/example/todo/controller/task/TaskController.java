@@ -23,4 +23,10 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
         return "tasks/list";
     }
+
+    @GetMapping("tasks/detail") // 後で、detailの部分をidに応じて変わるように変更予定
+    public String showDetail(){
+        return "tasks/detail";
+    }
+
 }

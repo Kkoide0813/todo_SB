@@ -1,6 +1,5 @@
 package com.example.todo.controller.task;
 
-import com.example.todo.service.task.TaskEntity;
 import com.example.todo.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,12 +25,12 @@ public class TaskController {
         return "tasks/list";
     }
 
+    //　taskEntityのid以外のすべてを表示させる
     @GetMapping("/tasks/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
-        TaskEntity taskEntity = taskService.findById(taskId)
+        var taskEntity = taskService.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found :id = " + taskId));
-        model.addAttribute("taskId", taskEntity.id());
+        model.addAttribute("task", TaskDTO.toDTO(taskEntity)); //TaskEntityをTaskDTOに変換してビューに渡す
         return "tasks/detail";
     }
-
 }

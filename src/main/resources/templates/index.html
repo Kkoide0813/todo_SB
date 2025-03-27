@@ -2,10 +2,14 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>TOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <!--/* webjar使用する場合 */-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
 </head>
 <body>
-<h1>TOPページ</h1>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<h1>Hello,world!from Thymeleaf</h1>
 <a th:href="@{/tasks}">タスク一覧</a>
 </body>
 </html>

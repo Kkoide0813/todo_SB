@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>TODOアプリ</title>
     <!--/* webjar使用する場合 */-->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
-<h1>Hello,world!from Thymeleaf</h1>
+<!--/* webjars-locator-core使うと、バージョンを毎回変える必要がなくなる */-->
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<h1>TODOアプリ</h1>
 <a th:href="@{/tasks}">タスク一覧</a>
 </body>
 </html>

@@ -10,7 +10,9 @@
 <body>
 <!--/* webjars-locator-core使うと、バージョンを毎回変える必要がなくなる */-->
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<h1>TODOアプリ</h1>
-<a th:href="@{/tasks}">タスク一覧</a>
+<div class="container">
+    <h1>TODOアプリ</h1>
+    <a th:href="@{/tasks}">タスク一覧</a>
+</div>
 </body>
 </html>

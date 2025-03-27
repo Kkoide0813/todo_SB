@@ -21,8 +21,8 @@
         <tbody>
         <!--/* ループ処理：モデルからtaskList呼び出してtaskに格納、taskをth:objectに格納し、th:textと紐づけて表示 */-->
         <tr th:each="task : ${taskList}" th:object="${task}">
-            <td th:text="*{id}"></td>
-            <td th:text="*{summary}"></td>
+            <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{id}"></a></td>
+            <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{summary}"></a></td>
             <td th:text="*{status}"></td>
             <td th:text="*{description}"></td>
         </tr>

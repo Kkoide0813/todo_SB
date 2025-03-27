@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
-    <meta charset="UTF-8">
     <title>TASK LIST</title>
 </head>
 <body>
-<h1>タスク一覧ページ</h1>
-<a th:href="@{/}">トップページへ戻る</a>
+<section layout:fragment="content" >  <!--/* layout.htmlに渡す内容 */-->
+    <h1>タスク一覧ページ</h1>
+    <a th:href="@{/}">トップページへ戻る</a>
 
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th >ID</th>
-            <th>概要</th>
-            <th>ステータス</th>
-            <th>説明</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!--/* ループ処理：モデルからtaskList呼び出してtaskに格納、taskをth:objectに格納し、th:textと紐づけて表示 */-->
-        <tr th:each="task : ${taskList}" th:object="${task}">
-            <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{id}"></a></td>
-            <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{summary}"></a></td>
-            <td th:text="*{status}"></td>
-            <td th:text="*{description}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th >ID</th>
+                <th>概要</th>
+                <th>ステータス</th>
+                <th>説明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/* ループ処理：モデルからtaskList呼び出してtaskに格納、taskをth:objectに格納し、th:textと紐づけて表示 */-->
+            <tr th:each="task : ${taskList}" th:object="${task}">
+                <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{id}"></a></td>
+                <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{summary}"></a></td>
+                <td th:text="*{status}"></td>
+                <td th:text="*{description}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 </body>
 </html>

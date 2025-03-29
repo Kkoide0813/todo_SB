@@ -10,7 +10,7 @@
 <body>
 <section layout:fragment="content" >
     <div>
-        <form>
+        <form th:action="@{/tasks}" method="post">　<!--/* ここに送信先を設定する */-->
             <div>
                 <label for="summaryInput">概要</label>
                 <input type="text" id="summaryInput">

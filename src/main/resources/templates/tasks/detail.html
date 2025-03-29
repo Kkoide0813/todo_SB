@@ -9,8 +9,6 @@
 </head>
 <body>
 <section layout:fragment="content" >  <!--/* layout.htmlに渡す内容 */-->
-    <h1>タスク詳細</h1>
-    <a th:href="@{/tasks}">タスク一覧</a>
     <div th:object="${task}">
         <h2 th:text=" '#' + *{id} + ' ' + *{summary} "></h2> <!--/* #1 タイトル と表示 */-->
         <p th:text="*{status}"></p>

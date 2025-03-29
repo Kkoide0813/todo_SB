@@ -2,7 +2,7 @@ package com.example.todo.service.task;
 
 public record TaskEntity(
 
-        long id,
+        Long id, // プリミティブ型longにはnull渡せないので、オブジェクト型Longに変更
 
         String description,
 

@@ -33,4 +33,12 @@ public class TaskController {
         model.addAttribute("task", TaskDTO.toDTO(taskEntity)); //TaskEntityをTaskDTOに変換してビューに渡す
         return "tasks/detail";
     }
+
+    // GET/tasks/creationForm
+    @GetMapping("tasks/creationForm")
+    public String showCreationForm(){
+        return "tasks/form";
+    }
+
+
 }

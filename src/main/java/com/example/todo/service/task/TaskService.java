@@ -21,13 +21,9 @@ public class TaskService {
     public Optional<TaskEntity> findById(long taskId) {
         return taskRepository.selectById(taskId);
     }
-    
-    // @Transactionalをつけて、エラー時にはinsertが実行されずに、ロールバックすることを確認する
+
     @Transactional
     public void create(TaskEntity newEntity) {
         taskRepository.insert(newEntity);
-
-        // 失敗処理
-        throw new IllegalArgumentException("TEST");
     }
 }

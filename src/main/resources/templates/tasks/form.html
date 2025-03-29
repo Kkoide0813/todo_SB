@@ -10,18 +10,18 @@
 <body>
 <section layout:fragment="content" >
     <div>
-        <form th:action="@{/tasks}" method="post">　<!--/* ここに送信先を設定する */-->
+        <form th:action="@{/tasks}" method="post">
             <div>
                 <label for="summaryInput">概要</label>
-                <input type="text" id="summaryInput">
+                <input type="text" id="summaryInput" name="summary"> <!--/* ラベル＝概要に入力した内容が、name属性をキーとしてサーバー側に送信される */-->
             </div>
             <div>
                 <label for="descriptionInput">詳細</label>
-                <textarea id="descriptionInput"></textarea>
+                <textarea id="descriptionInput"  name="description"></textarea>　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
             </div>
             <div>
                 <label for="statusInput">ステータス</label>
-                <select id="statusInput">
+                <select id="statusInput" name="status">　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
                     <option value="TODO">Todo</option>
                     <option value="DOING">Doing</option>
                     <option value="DONE">Done</option>

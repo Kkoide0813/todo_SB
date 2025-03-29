@@ -9,7 +9,29 @@
 </head>
 <body>
 <section layout:fragment="content" >
-    <p>WIP: タスク作成</p>
+    <div>
+        <form>
+            <div>
+                <label for="summaryInput">概要</label>
+                <input type="text" id="summaryInput">
+            </div>
+            <div>
+                <label for="descriptionInput">詳細</label>
+                <textarea id="descriptionInput"></textarea>
+            </div>
+            <div>
+                <label for="statusInput">ステータス</label>
+                <select id="statusInput">
+                    <option value="TODO">Todo</option>
+                    <option value="DOING">Doing</option>
+                    <option value="DONE">Done</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">作成</button>
+            </div>
+        </form>
+    </div>
 </section>
 </body>
 </html>

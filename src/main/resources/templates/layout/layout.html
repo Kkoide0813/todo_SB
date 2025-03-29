@@ -6,16 +6,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--/* "各htmlファイル名 - layout.htmlのtitleタグのこと。つまり「ページごとのタイトル - TODOアプリ」と表示される" */-->
   <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">TODOアプリ</title>
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 <div class="container">
-  <header>This is header.</header>　<!--/* 全ページ共通 */-->
+  <!--/* "Bootstrap navバーコピペ、ヘッダー、フッター削除" */-->
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" th:href="@{/}">TODO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/tasks}">タスク一覧</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <section layout:fragment="content"></section>　  <!--/* contentという変数で渡された内容がここに書き出される */-->
-  <footer>This is footer.</footer>　<!--/* 全ページ共通 */-->
 </div>
 </body>
 </html>

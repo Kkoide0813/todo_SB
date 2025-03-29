@@ -6,7 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TODOアプリ</title>
+  <!--/* "各htmlファイル名 - layout.htmlのtitleタグのこと。つまり「ページごとのタイトル - TODOアプリ」と表示される" */-->
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">TODOアプリ</title>
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>

@@ -4,6 +4,8 @@ import com.example.todo.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,15 +39,20 @@ public class TaskController {
         return "tasks/detail";
     }
 
-    // GET/tasks/creationForm
+    // タスク一覧の作成ボタン　＝＞　登録フォーム
     @GetMapping("/creationForm")
     public String showCreationForm(){
         return "tasks/form";
     }
 
-    // POST/tasks
+    // 登録処理
     @PostMapping
-    public String create(TaskForm form){
+    // 入力チェック追加
+    public String create(@Validated TaskForm form, BindingResult bindingResult){
+        // エラーの場合＝Null違反の場合、入力画面へする
+        if(bindingResult.hasErrors()){
+           return "tasks/form";
+        }
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
     }

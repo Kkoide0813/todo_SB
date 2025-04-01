@@ -14,10 +14,12 @@
             <div>
                 <label for="summaryInput">概要</label>
                 <input type="text" id="summaryInput" th:field="*{summary}"> <!--/* th:fieldにはname="summary"が含まれる*/-->
+                <span th:errors="*{summary}"></span>
             </div>
             <div>
                 <label for="descriptionInput">詳細</label>
                 <textarea id="descriptionInput"  th:field="*{description}"></textarea>　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
+                <span th:errors="*{description}"></span>
             </div>
             <div>
                 <label for="statusInput">ステータス</label>
@@ -26,6 +28,7 @@
                     <option value="DOING">Doing</option>
                     <option value="DONE">Done</option>
                 </select>
+                <span th:errors="*{status}"></span>
             </div>
             <div>
                 <button type="submit">作成</button>

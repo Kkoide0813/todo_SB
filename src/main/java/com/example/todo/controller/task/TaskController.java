@@ -53,5 +53,4 @@ public class TaskController {
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
     }
-
 }

@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,23 +36,19 @@ public class TaskController {
         return "tasks/detail";
     }
 
-    // タスク一覧の作成ボタン　＝＞　登録フォーム　※TaskForm formはPOSTされてないので、nullになる。Thymeleaf側で、taskForm.summaryなどが、エラーになってしまう。
+    // タスク一覧の作成ボタン　＝＞　登録フォーム
     // POST時のcreateのバリデーションエラー　＝＞　登録フォーム
     @GetMapping("/creationForm")
-    public String showCreationForm(TaskForm form, Model model){
-        if(form == null){
-            form = new TaskForm(null, null, null);
-        }
-        model.addAttribute("taskForm", form);
+    public String showCreationForm(@ModelAttribute TaskForm form){ // @ModelAttributeにより、modelのキー："taskForm"
         return "tasks/form";
     }
 
     // 登録処理
     // タスク作成のPOSTリクエストで受け取ったTaskForm formをバリデーションエラーの時には、showCreationFormにformを渡す
     @PostMapping
-    public String create(@Validated TaskForm form, BindingResult bindingResult, Model model){
+    public String create(@Validated TaskForm form, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-           return showCreationForm(form, model);
+           return showCreationForm(form);
         }
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト

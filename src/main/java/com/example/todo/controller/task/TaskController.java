@@ -39,19 +39,23 @@ public class TaskController {
         return "tasks/detail";
     }
 
-    // タスク一覧の作成ボタン　＝＞　登録フォーム
+    // タスク一覧の作成ボタン　＝＞　登録フォーム　※TaskForm formはPOSTされてないので、nullになる。Thymeleaf側で、taskForm.summaryなどが、エラーになってしまう。
+    // POST時のcreateのバリデーションエラー　＝＞　登録フォーム
     @GetMapping("/creationForm")
-    public String showCreationForm(){
+    public String showCreationForm(TaskForm form, Model model){
+        if(form == null){
+            form = new TaskForm(null, null, null);
+        }
+        model.addAttribute("taskForm", form);
         return "tasks/form";
     }
 
     // 登録処理
+    // タスク作成のPOSTリクエストで受け取ったTaskForm formをバリデーションエラーの時には、showCreationFormにformを渡す
     @PostMapping
-    // 入力チェック追加
-    public String create(@Validated TaskForm form, BindingResult bindingResult){
-        // エラーの場合＝Null違反の場合、入力画面へする
+    public String create(@Validated TaskForm form, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-           return "tasks/form";
+           return showCreationForm(form, model);
         }
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト

@@ -44,17 +44,12 @@ public class TaskController {
     }
 
     // POST/tasks
-    // formからEntityを作りたい
     @PostMapping("/tasks")
-    public String create(TaskForm form, Model model){
-
-        // formからEntityを作成する
-        // valueOf・・・文字列のstatusから文字列に一致するEnumクラスを取得
+    public String create(TaskForm form){
         var newEntity = new TaskEntity(null, form.summary(), form.description(), TaskStatus.valueOf(form.status()));
-
-        // サービスのcreateメソッドの引数にはnew TaskEntityを渡す
         taskService.create(newEntity);
-        return list(model);
+        // POST　→　リダイレクト先がGETリクエストの/tasks　→　タスク一覧へページ遷移
+        return "redirect:/tasks";
     }
 
 }

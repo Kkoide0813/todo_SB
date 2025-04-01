@@ -11,27 +11,32 @@
 <section layout:fragment="content" >
     <div>
         <form th:action="@{/tasks}" method="post" th:object="${taskForm}">
-            <div>
-                <label for="summaryInput">概要</label>
-                <input type="text" id="summaryInput" th:field="*{summary}"> <!--/* th:fieldにはname="summary"が含まれる*/-->
+            <div class="form-group mt-3">
+                <label for="summaryInput" class="form-label">概要</label>
+                <input type="text" id="summaryInput" th:field="*{summary}" class="form-control"> <!--/* th:fieldにはname
+                ="summary
+                "が含まれる*/-->
                 <span th:errors="*{summary}"></span>
             </div>
-            <div>
-                <label for="descriptionInput">詳細</label>
-                <textarea id="descriptionInput"  th:field="*{description}"></textarea>　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
+            <div class="form-group mt-3">
+                <label for="descriptionInput"  class="form-label">詳細</label>
+                <textarea id="descriptionInput"  th:field="*{description}" class="form-control"
+                          rows="10"></textarea>　<!--/*
+                ラベルに入力した内容が、name
+                属性をキーとしてサーバー側に送信される */-->
                 <span th:errors="*{description}"></span>
             </div>
-            <div>
-                <label for="statusInput">ステータス</label>
-                <select id="statusInput" th:field="*{status}">　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
+            <div class="form-group mt-3">
+                <label for="statusInput" class="form-label">ステータス</label>
+                <select id="statusInput" th:field="*{status}" class="form-control">　<!--/* ラベルに入力した内容が、name属性をキーとしてサーバー側に送信される */-->
                     <option value="TODO">Todo</option>
                     <option value="DOING">Doing</option>
                     <option value="DONE">Done</option>
                 </select>
                 <span th:errors="*{status}"></span>
             </div>
-            <div>
-                <button type="submit">作成</button>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">作成</button>
             </div>
         </form>
     </div>

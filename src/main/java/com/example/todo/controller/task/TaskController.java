@@ -7,14 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/tasks")
 public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping("/tasks")
+    @GetMapping
     public String list(Model model) {
         // List<TaskEntity>　-> List<TaskDTO>に変換
         var taskList = taskService.find()
@@ -27,7 +29,7 @@ public class TaskController {
     }
 
     //　taskEntityのid以外のすべてを表示させる
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
         var taskEntity = taskService.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found :id = " + taskId));
@@ -36,13 +38,13 @@ public class TaskController {
     }
 
     // GET/tasks/creationForm
-    @GetMapping("/tasks/creationForm")
+    @GetMapping("/creationForm")
     public String showCreationForm(){
         return "tasks/form";
     }
 
     // POST/tasks
-    @PostMapping("/tasks")
+    @PostMapping
     public String create(TaskForm form){
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト

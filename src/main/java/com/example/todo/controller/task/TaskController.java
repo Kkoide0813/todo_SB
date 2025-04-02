@@ -53,4 +53,13 @@ public class TaskController {
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
     }
+
+    // 編集処理
+    // GET /tasks/{tasikId}/editForm
+    @GetMapping("/{id}/editForm")
+    public String showEditForm(@PathVariable("id") long id, Model model){
+        TaskForm form = new TaskForm("hoge", "hogehoge", "TODO");
+        model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
+        return "tasks/form";
+    }
 }

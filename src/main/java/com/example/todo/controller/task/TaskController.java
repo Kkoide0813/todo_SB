@@ -61,9 +61,7 @@ public class TaskController {
         // Optional<TaskEntity>型をTaskFormに変換する
         var taskEntity = taskService.findById(id)
                         .orElseThrow(TaskNotFoundException::new);
-        // Optionalの中身がエラーの場合、エラーメッセージ
-        var form = new TaskForm(taskEntity.summary(), taskEntity.description(), taskEntity.status().name());
-
+        var form = TaskForm.fromEntity(taskEntity);
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
         return "tasks/form";
     }

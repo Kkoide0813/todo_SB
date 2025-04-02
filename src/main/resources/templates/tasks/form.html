@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}"
 >
 <head>
-    <title>タスク作成</title>
+    <title th:text="${mode == 'CREATE'} ? 'タスク作成' : 'タスク編集' "></title>　<!--/* 参考演算子　true ->　'タスク作成'　：　false -> 'タスク編集' */-->
 </head>
 <body>
 <section layout:fragment="content" >

@@ -40,16 +40,17 @@ public class TaskController {
     // タスク一覧の作成ボタン　＝＞　登録フォーム
     // POST時のcreateのバリデーションエラー　＝＞　登録フォーム
     @GetMapping("/creationForm")
-    public String showCreationForm(@ModelAttribute TaskForm form){ // @ModelAttributeにより、modelのキー："taskForm"
+    public String showCreationForm(@ModelAttribute TaskForm form, Model model){
+        model.addAttribute("mode", "CREATE"); // <title th:text="${mode == 'CREATE'} ? 'タスク作成' : 'タスク編集' "></title>
         return "tasks/form";
     }
 
     // 登録処理
     // タスク作成のPOSTリクエストで受け取ったTaskForm formをバリデーションエラーの時には、showCreationFormにformを渡す
     @PostMapping
-    public String create(@Validated TaskForm form, BindingResult bindingResult){
+    public String create(@Validated TaskForm form, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-           return showCreationForm(form);
+           return showCreationForm(form, model);
         }
         taskService.create(form.toEntity());
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
@@ -65,6 +66,7 @@ public class TaskController {
                 .map(TaskForm::fromEntity)
                 .orElseThrow(TaskNotFoundException::new);
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
+        model.addAttribute("mode", "EDIT"); // <title th:text="${mode == 'CREATE'} ? 'タスク作成' : 'タスク編集' "></title>
         return "tasks/form";
     }
 }

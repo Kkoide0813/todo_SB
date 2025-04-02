@@ -10,7 +10,13 @@
 <body>
 <section layout:fragment="content" >
     <div>
-        <form th:action="@{/tasks}" method="post" th:object="${taskForm}">
+        <!--/* CREATE: POST /tasks */-->
+        <!--/* EDIT: PUT /tasks/{id} */-->
+
+        <!--/* ${id}は@PathVariable("id") リクエストされたid */-->
+        <form th:action="${mode == 'CREATE'} ? @{/tasks} : @{/tasks/{id}(id=${id})} "
+              th:method="${mode == 'CREATE'} ? post : put"
+              th:object="${taskForm}">
             <div class="form-group mt-3">
                 <label for="summaryInput" class="form-label">概要</label>
                 <input type="text" id="summaryInput" th:field="*{summary}" class="form-control" th:errorclass="is-invalid"> <!--/* spanタブのth:errors="*{summary}"の時、class="form-control is-invalid となるという意味*/-->
@@ -32,8 +38,8 @@
                 <span th:errors="*{status}" class="invalid-feedback"></span>
             </div>
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary">作成</button>
-                <a th:href="@{/tasks}" class="btn btn-secondary">戻る</a>
+                <button type="submit" class="btn btn-primary" th:text="${mode == 'CREATE'} ? '作成' : '編集'"></button>
+                <a th:href="${mode == 'CREATE'} ? @{/tasks} : @{/tasks/{id}(id=${id})}" class="btn btn-secondary">戻る</a> <!--/* ${id}は@PathVariable("id") リクエストされたid */-->
             </div>
         </form>
     </div>

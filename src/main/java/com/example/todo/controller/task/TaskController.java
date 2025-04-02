@@ -26,7 +26,7 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
         return "tasks/list";
     }
-
+    // 表示処理
     //　taskEntityのid以外のすべてを表示させる
     @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
@@ -56,7 +56,7 @@ public class TaskController {
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
     }
 
-    // タスク詳細　→　編集
+    // 編集処理　タスク詳細　→　編集
     // GET /tasks/{tasikId}/editForm
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model){

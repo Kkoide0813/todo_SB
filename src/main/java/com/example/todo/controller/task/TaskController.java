@@ -58,10 +58,9 @@ public class TaskController {
     // GET /tasks/{tasikId}/editForm
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model){
-        // Optional<TaskEntity>型をTaskFormに変換する
-        var taskEntity = taskService.findById(id)
-                        .orElseThrow(TaskNotFoundException::new);
-        var form = TaskForm.fromEntity(taskEntity);
+        var form = taskService.findById(id)
+                .map(entity -> TaskForm.fromEntity(entity))
+                .orElseThrow(TaskNotFoundException::new);
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
         return "tasks/form";
     }

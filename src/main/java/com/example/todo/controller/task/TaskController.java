@@ -54,11 +54,15 @@ public class TaskController {
         return "redirect:/tasks"; // GETの/tasksへリダイレクト
     }
 
-    // 編集処理
+    // タスク詳細　→　編集
     // GET /tasks/{tasikId}/editForm
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model){
-        TaskForm form = new TaskForm("hoge", "hogehoge", "TODO");
+        // Optional<TaskEntity>型をTaskFormに変換する
+        var taskEntity = taskService.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Task not found")); // Optionalの中身がエラーの場合、エラーメッセージ
+        var form = new TaskForm(taskEntity.summary(), taskEntity.description(), taskEntity.status().name());
+
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
         return "tasks/form";
     }

@@ -31,7 +31,7 @@ public class TaskController {
     @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
         var taskEntity = taskService.findById(taskId)
-                .orElseThrow(() -> new IllegalArgumentException("Task not found :id = " + taskId));
+                .orElseThrow(TaskNotFoundException::new);
         model.addAttribute("task", TaskDTO.toDTO(taskEntity)); //TaskEntityをTaskDTOに変換してビューに渡す
         return "tasks/detail";
     }
@@ -60,7 +60,8 @@ public class TaskController {
     public String showEditForm(@PathVariable("id") long id, Model model){
         // Optional<TaskEntity>型をTaskFormに変換する
         var taskEntity = taskService.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("Task not found")); // Optionalの中身がエラーの場合、エラーメッセージ
+                        .orElseThrow(TaskNotFoundException::new);
+        // Optionalの中身がエラーの場合、エラーメッセージ
         var form = new TaskForm(taskEntity.summary(), taskEntity.description(), taskEntity.status().name());
 
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"

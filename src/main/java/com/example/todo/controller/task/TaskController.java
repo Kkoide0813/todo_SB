@@ -30,9 +30,10 @@ public class TaskController {
     //　taskEntityのid以外のすべてを表示させる
     @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model){
-        var taskEntity = taskService.findById(taskId)
+        var taskDTO = taskService.findById(taskId)
+                .map(TaskDTO::toDTO)
                 .orElseThrow(TaskNotFoundException::new);
-        model.addAttribute("task", TaskDTO.toDTO(taskEntity)); //TaskEntityをTaskDTOに変換してビューに渡す
+        model.addAttribute("task", taskDTO);
         return "tasks/detail";
     }
 
@@ -58,8 +59,10 @@ public class TaskController {
     // GET /tasks/{tasikId}/editForm
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model){
+        // idがDBに存在する場合は、.mapでOptionalの中身を<TaskEntity>から<TaskForm>に変更、
+        // idがDBに存在しない場合、.orElseThrowで例外処理が実行
         var form = taskService.findById(id)
-                .map(entity -> TaskForm.fromEntity(entity))
+                .map(TaskForm::fromEntity)
                 .orElseThrow(TaskNotFoundException::new);
         model.addAttribute("taskForm", form); // form.html th:object="${taskForm}"
         return "tasks/form";

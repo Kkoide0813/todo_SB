@@ -71,7 +71,16 @@ public class TaskController {
     }
 
     @PutMapping("{id}") // PUT/tasks/{id}
-    public String update(@PathVariable("id") long id) {
+    public String update(@PathVariable("id") long id,
+                         @Validated TaskForm form,
+                         BindingResult bindingResult,
+                         Model model
+    ) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("taskForm", form); // 編集画面で入力した内容がバリデーションエラーになったとき、そのまままた編集画面に戻る
+            model.addAttribute("mode", "EDIT");
+            return "tasks/form";
+        }
         return "redirect:/tasks/{id}";
     }
 }

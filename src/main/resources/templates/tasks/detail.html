@@ -11,6 +11,11 @@
 <section layout:fragment="content" >  <!--/* layout.htmlに渡す内容 */-->
     <div>
         <a th:href="@{/tasks/{id}/editForm(id=${id})}" class="btn btn-primary">編集</a> <!--/* ${id}は@PathVariable("id")のid */-->
+        <!--/* DELETE　/tasks/1 <a>タグだと、methodがgetになるので、formタグでmethodをdeleteにする */-->
+        <!--/* formタグのmethodはpostかgetしか設定できない。Thymeleaf記法　th:method="delete・・・通常はdeleteにするために、postに設定し、hiddenパラメータでdeleteにする */-->
+        <form th:action="@{/tasks/{id}(id=${id})}" th:method="delete" style="display: inline">
+            <button type="submit" class="btn btn-danger">削除</button>
+        </form>
     </div>
     <div th:object="${task}" class="mt-3">
         <h2 th:text=" '#' + *{id} + ' ' + *{summary} "></h2> <!--/* #1 タイトル と表示 */-->

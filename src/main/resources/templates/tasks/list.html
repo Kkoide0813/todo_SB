@@ -15,27 +15,32 @@
     </div>
 
     <!--/* 検索機能 */-->
-    <div>
-        <form th:action="@{/tasks}" method="get">
-            <div class="form-group">
-                <label class="form-label" for="summarySearch">概要</label>
-                <input class="form-control" id="summarySearch" name="summary" placeholder="概要">
-            </div>
-            <div class="form-group">
-                <div>
-                    <label class="form-label">ステータス</label>
+    <div class="card">
+        <div class="card-header">
+            検索
+        </div>
+        <div class="card-body">
+            <form th:action="@{/tasks}" method="get">
+                <div class="form-group">
+                    <label class="form-label" for="summarySearch">概要</label>
+                    <input class="form-control" id="summarySearch" name="summary" placeholder="概要">
                 </div>
-                <div>
-                    <input type="checkbox" id="statusSearchTodo" name="status" value="TODO">
-                    <label for="statusSearchTodo">TODO</label>
-                    <input type="checkbox" id="statusSearchDoing" name="status" value="DOING">
-                    <label for="statusSearchDoing">DOING</label>
-                    <input type="checkbox" id="statusSearchDone" name="status" value="DONE">
-                    <label for="statusSearchDone">DONE</label>
+                <div class="form-group">
+                    <div>
+                        <label class="form-label">ステータス</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="statusSearchTodo" name="status" value="TODO">
+                        <label for="statusSearchTodo">TODO</label>
+                        <input type="checkbox" id="statusSearchDoing" name="status" value="DOING">
+                        <label for="statusSearchDoing">DOING</label>
+                        <input type="checkbox" id="statusSearchDone" name="status" value="DONE">
+                        <label for="statusSearchDone">DONE</label>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">検索</button>
-        </form>
+                <button type="submit" class="btn btn-primary">検索</button>
+            </form>
+        </div>
     </div>
     <div>
         <table class="table">

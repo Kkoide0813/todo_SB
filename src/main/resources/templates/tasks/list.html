@@ -22,6 +22,7 @@
         <div class="card-body">
             <form th:action="@{/tasks}" method="get">
                 <div class="form-group">
+                    <!--/* 概要検索：入力ボックス */-->
                     <label class="form-label" for="summarySearch">概要</label>
                     <input class="form-control" id="summarySearch" name="summary" placeholder="概要">
                 </div>
@@ -29,13 +30,14 @@
                     <div>
                         <label class="form-label">ステータス</label>
                     </div>
-                    <div>
-                        <input type="checkbox" id="statusSearchTodo" name="status" value="TODO">
-                        <label for="statusSearchTodo">TODO</label>
-                        <input type="checkbox" id="statusSearchDoing" name="status" value="DOING">
-                        <label for="statusSearchDoing">DOING</label>
-                        <input type="checkbox" id="statusSearchDone" name="status" value="DONE">
-                        <label for="statusSearchDone">DONE</label>
+                    <!--/* ステータス検索：チェックボックス */-->
+                    <div class="btn-group">
+                        <input class="btn-check" type="checkbox" id="statusSearchTodo" name="status" value="TODO">
+                        <label class="btn btn-outline-primary" for="statusSearchTodo">TODO</label>
+                        <input class="btn-check" type="checkbox" id="statusSearchDoing" name="status" value="DOING">
+                        <label class="btn btn-outline-primary" for="statusSearchDoing">DOING</label>
+                        <input class="btn-check" type="checkbox" id="statusSearchDone" name="status" value="DONE">
+                        <label class="btn btn-outline-primary" for="statusSearchDone">DONE</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">検索</button>

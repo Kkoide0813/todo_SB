@@ -92,6 +92,7 @@ public class TaskController {
     // -> DELETE /tasks/1 springの読み替え機能　application.properties: spring.mvc.hiddenmethod.filter.enabled=true
     @DeleteMapping("{id}")
     public String delete(@PathVariable("id") long id) {
+        taskService.delete(id);
         return "redirect:/tasks";
     }
 

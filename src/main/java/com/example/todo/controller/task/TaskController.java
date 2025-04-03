@@ -15,8 +15,8 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping
-    public String list(Model model) {
+    @GetMapping // GET /tasks
+    public String list(TaskSearchForm searchForm, Model model) {
         // List<TaskEntity>　-> List<TaskDTO>に変換
         var taskList = taskService.find()
                 .stream()

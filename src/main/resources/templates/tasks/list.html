@@ -13,6 +13,15 @@
         <a th:href="@{/tasks/creationForm}" class="btn btn-primary">作成</a>
     </div>
     <div>
+        <form th:action="@{/tasks}" method="get">
+            <div class="form-group">
+                <label class="form-label" for="summarySearch">概要</label>
+                <input class="form-control" id="summarySearch" name="summary" placeholder="概要">
+            </div>
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
+    </div>
+    <div>
         <table class="table">
             <thead>
             <tr>

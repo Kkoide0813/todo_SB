@@ -1,17 +1,12 @@
 package com.example.todo.controller.task;
 
-import com.example.todo.service.task.TaskSearchEntity;
 import com.example.todo.service.task.TaskService;
-import com.example.todo.service.task.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,17 +15,14 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    /**
+     * タスク一覧表示
+     *
+     * @return Path
+     */
     @GetMapping // GET /tasks
     public String list(TaskSearchForm searchForm, Model model) {
-
-        // searchForm.status() != null: List<Status>     .map-> .orElse-> statusEntityListにセットされる
-        // searchForm.status() == null: List.of()        .orElse ->　空のリストがstatusEntityListにセットされる
-        var statusEntityList = Optional.ofNullable(searchForm.status())
-                .map(statusList -> statusList.stream().map(TaskStatus::valueOf).toList())
-                .orElse(List.of());
-
-        var searchEntity = new TaskSearchEntity(searchForm.summary(), statusEntityList);
-        var taskList = taskService.find(searchEntity)
+        var taskList = taskService.find(searchForm.toEntity())
                 .stream()
                 .map(TaskDTO::toDTO)
                 .toList();

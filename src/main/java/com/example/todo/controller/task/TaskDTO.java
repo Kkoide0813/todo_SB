@@ -6,9 +6,9 @@ public record TaskDTO(
 
         long id,
 
-        String description,
-
         String summary,
+
+        String description,
 
         String status
 ) {

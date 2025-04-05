@@ -4,9 +4,9 @@ public record TaskEntity(
 
         Long id, // プリミティブ型longにはnull渡せないので、オブジェクト型Longに変更
 
-        String description,
-
         String summary,
+
+        String description,
 
         TaskStatus status
 ) {
